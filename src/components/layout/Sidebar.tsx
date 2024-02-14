@@ -1,0 +1,60 @@
+import { Layout, Menu } from "antd";
+import sidebarGenerator from "../../utils/sidebarGenerator";
+import { adminPath } from "../../routes/admin.routes";
+import { facultyPath } from "../../routes/faculty.routes";
+import { studentPath } from "../../routes/student.routes";
+
+const Sidebar = () => {
+  const { Sider } = Layout;
+  const userRole = {
+    ADMIN: "admin",
+    Faculty: "faculty",
+    STUDENT: "student",
+  };
+  let role = "faculty";
+
+  let sidebarItem;
+  switch (role) {
+    case userRole.ADMIN:
+      sidebarItem = sidebarGenerator(adminPath, userRole.ADMIN);
+      break;
+    case userRole.Faculty:
+      sidebarItem = sidebarGenerator(facultyPath, userRole.Faculty);
+      break;
+    case userRole.STUDENT:
+      sidebarItem = sidebarGenerator(studentPath, userRole.STUDENT);
+      break;
+    default:
+      break;
+  }
+  console.log(sidebarItem);
+  return (
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={(broken) => {
+        console.log(broken);
+      }}
+      onCollapse={(collapsed, type) => {
+        console.log(collapsed, type);
+      }}>
+      <div
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <h1>SP-uni</h1>
+      </div>
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={["4"]}
+        items={sidebarItem}
+      />
+    </Sider>
+  );
+};
+
+export default Sidebar;
