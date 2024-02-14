@@ -4,6 +4,16 @@ import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
 import { NavLink } from "react-router-dom";
+import { ReactNode } from "react";
+type TRoute = {
+  path: string;
+  element: ReactNode;
+};
+type TSidebar = {
+  key: string;
+  label: ReactNode;
+  children?: TSidebar[];
+};
 
 const adminPath = [
   {
@@ -15,9 +25,9 @@ const adminPath = [
     name: "User Management",
     children: [
       {
-        name: "create student",
-        path: "create-student",
-        element: <CreateStudent />,
+        name: "create admin",
+        path: "create-admin",
+        element: <CreateAdmin />,
       },
       {
         name: "create faculty",
@@ -26,14 +36,14 @@ const adminPath = [
       },
       {
         name: "create student",
-        path: "create-admin",
-        element: <CreateAdmin />,
+        path: "create-student",
+        element: <CreateStudent />,
       },
     ],
   },
 ];
 
-export const adminRoutes = adminPath.reduce((acc, item) => {
+export const adminRoutes = adminPath.reduce((acc: TRoute[], item) => {
   if (item.name && item.path) {
     acc.push({ path: item.path, element: item.element });
   }
@@ -45,7 +55,7 @@ export const adminRoutes = adminPath.reduce((acc, item) => {
   return acc;
 }, []);
 
-export const adminSidebar = adminPath.reduce((acc, item) => {
+export const adminSidebar = adminPath.reduce((acc: TSidebar[], item) => {
   if (item.name && item.path) {
     acc.push({
       key: item.name,
