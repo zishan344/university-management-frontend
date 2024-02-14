@@ -6,23 +6,12 @@ import {
 } from "@ant-design/icons";
 
 import { Layout, Menu, MenuProps } from "antd";
-import { Outlet } from "react-router-dom";
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Dashboard",
-  },
-  {
-    key: "2",
-    label: "Profile",
-  },
-  {
-    key: "3",
-    label: "User Management",
-  },
-];
+import { NavLink, Outlet } from "react-router-dom";
+import { adminSidebar } from "../../routes/admin.routes";
+
 const MainLayout = () => {
   const { Header, Content, Footer, Sider } = Layout;
+  console.log("sidebar", adminSidebar.length, adminSidebar);
   return (
     <Layout>
       <Sider
@@ -47,7 +36,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={adminSidebar}
         />
       </Sider>
       <Layout style={{ height: "100vh" }}>
