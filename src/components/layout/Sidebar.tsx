@@ -11,7 +11,7 @@ const Sidebar = () => {
     Faculty: "faculty",
     STUDENT: "student",
   };
-  let role = "faculty";
+  let role = "admin";
 
   let sidebarItem;
   switch (role) {
@@ -27,7 +27,6 @@ const Sidebar = () => {
     default:
       break;
   }
-  console.log(sidebarItem);
   return (
     <Sider
       breakpoint="lg"
